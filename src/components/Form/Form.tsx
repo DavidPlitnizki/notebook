@@ -1,0 +1,37 @@
+import React,{ useState } from 'react';
+import {TodoFormProps} from '../../interfaces/interfaces';
+
+const Form: React.FC<TodoFormProps> = (props) => {
+    const [input, setInput] = useState<string>('');
+    const [txtArea, setTxtArea] = useState<string>('');
+
+    
+    const handleSubmit =(event: React.FormEvent)=> {
+        event.preventDefault();
+        const formObj = {
+            id: Date.now(),
+            title: input,
+            desc: txtArea
+        }
+        props.onAddTask(formObj);
+        clearTextFields();
+    }
+
+    const clearTextFields = () => {
+        setInput('');
+        setTxtArea('');
+    }
+
+    return (
+       <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label htmlFor="title">Input</label>
+                <input onChange={(e)=>setInput(e.target.value)} value={input}  type="text" style={{width: "15rem"}} name="title" placeholder="title" id="title..." />
+                <textarea onChange={(e)=>setTxtArea(e.target.value)} value={txtArea} style={{width: "15rem", height: "15rem"}} name="body" placeholder="Enter something..."></textarea>
+                <button type="submit" className="btn-success">Save</button>
+            </div>
+        </form>
+    )
+}
+
+export default Form;
