@@ -8,6 +8,7 @@ const Form: React.FC<TodoFormProps> = (props) => {
     
     const handleSubmit =(event: React.FormEvent)=> {
         event.preventDefault();
+        if(input === '' || txtArea === '') return;
         const formObj = {
             id: Date.now(),
             title: input,

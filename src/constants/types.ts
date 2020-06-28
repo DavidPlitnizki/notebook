@@ -1,4 +1,4 @@
-import {ITask, IIDTask} from '../interfaces/interfaces';
+import {ITask} from '../interfaces/interfaces';
 
 export const ADD_TASK = "ADD_TASK";
 export const DELETE_TASK = "DELETE_TASK";

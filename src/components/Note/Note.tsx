@@ -1,5 +1,5 @@
 import React from 'react';
-import {ITask, IIDTask} from '../../interfaces/interfaces';
+import {ITask} from '../../interfaces/interfaces';
 import {useDispatch} from 'react-redux';
 import {deleteTask} from '../../actions/actions';
 
