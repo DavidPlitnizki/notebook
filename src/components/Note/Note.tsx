@@ -2,14 +2,17 @@ import React from 'react';
 import {ITask} from '../../interfaces/interfaces';
 import {useDispatch} from 'react-redux';
 import {deleteTask} from '../../actions/actions';
+import {useStorage} from '../../hooks/useStorage';
 
 
 
 const Note: React.FC<ITask> = ({id, title, desc}) => {
     const dispatch = useDispatch();
+    const {removeTask} = useStorage();
 
     const deleteNote = (id: number) => {
-         dispatch(deleteTask(id));
+        removeTask(id);
+        dispatch(deleteTask(id));
     }
 
     return (

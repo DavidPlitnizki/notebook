@@ -1,7 +1,7 @@
 import {ADD_TASK, DELETE_TASK, TaskActionTypes} from '../constants/types';
 import {ITask} from '../interfaces/interfaces';
 
-export function addTask(newTask: ITask): TaskActionTypes {
+export function addTask(newTask: ITask): TaskActionTypes {    
     return {
         type: ADD_TASK,
         payload: newTask

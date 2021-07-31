@@ -3,6 +3,7 @@ import Form from '../Form/Form'
 import {useDispatch} from 'react-redux';
 import {addTask} from '../../actions/actions'
 import {ITask} from '../../interfaces/interfaces';
+import {useStorage} from '../../hooks/useStorage';
 
 interface ITasksState  {
     tasksState: any;
@@ -10,8 +11,10 @@ interface ITasksState  {
 
 const Main: React.FC = () => {
     const dispatch = useDispatch();
+    const {save} = useStorage();
 
     const addNewtask = (task: ITask) => {
+        save(task);
         dispatch(addTask(task))
     }
     
