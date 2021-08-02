@@ -6,8 +6,8 @@ import ListPage from './components/Pages/ListPage';
 const RouterApp: React.FC = () => {
     return (
         <Switch>
-            <Route exact path="/" component={App} />
-            <Route path="/list" component={ListPage} />
+            <Route exact path={`${process.env.PUBLIC_URL}/`} component={App} />
+            <Route path={`${process.env.PUBLIC_URL}/list`} component={ListPage} />
         </Switch>
     )
 }
