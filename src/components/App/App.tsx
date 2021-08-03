@@ -1,11 +1,25 @@
-import React from 'react';
-import MainPage from '../Pages/MainPage';
+import React, {useEffect} from 'react';
+import Header from '../Header/Header';
+import RouterApp from '../../routerApp';
+import {useStorage} from '../../hooks/useStorage';
+import {useDispatch} from 'react-redux';
+import {addStoredTasks} from '../../actions/actions';
 
 const App: React.FC = () => {
+
+  const { getAll } = useStorage();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const storedTasks = getAll();
+    dispatch(addStoredTasks(storedTasks));
+  },[]);
+
   return (
-    <div>
-      <MainPage />
-    </div>
+    <>
+      <Header />
+      <RouterApp />
+    </>
   );
 }
 

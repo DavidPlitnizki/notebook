@@ -8,10 +8,6 @@ export interface ITask {
     desc: string
 }
 
-export interface IIDTask {
-    id: number
-}
-
 export interface ITaskState {
     tasks: ITask[]
 }

@@ -13,7 +13,7 @@ const Header: React.FC = () => {
     return(
         <nav className="border split-nav">
             <div className="nav-brand">
-                <h3><a href={`${process.env.PUBLIC_URL}/`}>NOTEBOOK</a></h3>
+                <h3><Link to={`${process.env.PUBLIC_URL}/`}>NOTEBOOK</Link></h3>
             </div>
             <div className="collapsible">
             <input id="collapsible1" type="checkbox" name="collapsible1" />

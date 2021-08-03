@@ -25,8 +25,6 @@ export const useStorage = () => {
         localStorage.setItem(storageName, JSON.stringify(newTasks))
     }
 
-    const removeAll = () => {}
-
     const get = () => {}
 
     const getAll = (): ITask[] => {
@@ -38,8 +36,6 @@ export const useStorage = () => {
 
         return parsedRes;
     }
-
-    const check = () => {}
 
     return {save, removeTask, get, getAll};
 }

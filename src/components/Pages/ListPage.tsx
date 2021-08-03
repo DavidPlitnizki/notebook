@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
 import Note from '../Note/Note';
 import { ITask } from '../../interfaces/interfaces';
-import {useStorage} from '../../hooks/useStorage';
 import "./styles.css";
 
 interface ITasksState  {
@@ -12,12 +11,7 @@ interface ITasksState  {
 const Listpage = () => {
     const tasksList = useSelector((state: ITasksState) => state.tasksState.tasks);
     const [tasks, setTasks] = useState(tasksList);
-    const { getAll } = useStorage();
 
-    useEffect(() => {
-        const storedTasks = getAll();
-        setTasks(storedTasks);
-    },[])
 
     useEffect(() => {
         setTasks(tasksList);

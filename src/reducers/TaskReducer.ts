@@ -1,4 +1,4 @@
-import {ADD_TASK, DELETE_TASK, TaskActionTypes} from '../constants/types';
+import {ADD_TASK, DELETE_TASK, ADD_STORED_TASKS, TaskActionTypes} from '../constants/types';
 import {ITaskState} from '../interfaces/interfaces';
 
 const initialState: ITaskState = {
@@ -21,6 +21,11 @@ export function taskReducer(
 
             return {
                 tasks: newTask
+            }
+        case ADD_STORED_TASKS:
+            const newTasks = [...state.tasks, ...action.payload]
+            return{
+                tasks: newTasks
             }
             
         default:
