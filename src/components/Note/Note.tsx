@@ -1,7 +1,7 @@
 import React from 'react';
 import {ITask} from '../../interfaces/interfaces';
 import {useDispatch} from 'react-redux';
-import {deleteTask} from '../../actions/actions';
+import {deleteTask} from '../../store/TaskSlice';
 import {useStorage} from '../../hooks/useStorage';
 
 

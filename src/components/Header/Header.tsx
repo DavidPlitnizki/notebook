@@ -2,13 +2,10 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import { Link } from "react-router-dom";
 import Badge from '../Badge/Badge';
-
-interface ITasksState  {
-    tasksState: any;
-}
+import { RootState } from '../../store';
 
 const Header: React.FC = () => {
-    const tasksList = useSelector((state: ITasksState) => state.tasksState.tasks);
+    const tasksList = useSelector((state: RootState) => state.tasks.tasks);
 
     return(
         <nav className="border split-nav">

@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import RouterApp from '../../routerApp';
 import {useStorage} from '../../hooks/useStorage';
 import {useDispatch} from 'react-redux';
-import {addStoredTasks} from '../../actions/actions';
+import {addStoredTasks} from '../../store/TaskSlice';
 
 const App: React.FC = () => {
 

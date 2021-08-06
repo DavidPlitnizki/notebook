@@ -1,5 +1,5 @@
 export interface TodoFormProps {
-    onAddTask(obj: object): void
+    onAddTask(task: ITask): void
 }
 
 export interface ITask {
