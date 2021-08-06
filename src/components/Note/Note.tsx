@@ -16,11 +16,11 @@ const Note: React.FC<ITask> = ({id, title, desc}) => {
     }
 
     return (
-        <div className="card child-shadows-hover" style={{width: "15rem"}}>
+        <div className="card child-shadows-hover" style={{width: "15rem"}} draggable>
             <div className="card-body">
-    <h4 className="card-title">{title}</h4>
+                <h4 className="card-title">{title}</h4>
                 <hr />
-    <p className="card-text">{desc}</p>
+                <p className="card-text">{desc}</p>
                 <div className="btn_wrapper">
                     <button className="btn-danger" onClick={()=>deleteNote(id)} >Delete Note</button>
                 </div>

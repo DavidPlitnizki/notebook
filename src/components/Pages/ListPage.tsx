@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import Note from '../Note/Note';
 import { ITask } from '../../interfaces/interfaces';
 import { RootState } from '../../store';
+import Board from '../../components/Board/Board';
 import "./styles.css";
 
 
@@ -18,20 +19,24 @@ const Listpage = () => {
 
     
     return (
-        <div>
-            <div>
-                <span>TODO</span>
-                {(tasks.length > 0) ? tasks.map((task: ITask)=>{
-                    return(
-                        <Note key={task.id} id={task.id} title={task.title} desc={task.desc} />
-                    )
-                }) : <h1 className="no_notes">NO NOTES</h1>}
-            </div>
+        <Board list={tasks} />
+        // <div>
+        //     <div>
+        //         <span>TODO</span>
+        //         {(tasks.length > 0) ? tasks.map((task: ITask)=>{
+        //             return(
+        //                 <Note key={task.id}
+        //                         id={task.id}
+        //                         title={task.title}
+        //                         desc={task.desc} />
+        //             )
+        //         }) : <h1 className="no_notes">NO NOTES</h1>}
+        //     </div>
 
-            <div>
-                <span>in progress</span>
-            </div>
-        </div>
+        //     <div>
+        //         <span>in progress</span>
+        //     </div>
+        // </div>
     )
 }
 
