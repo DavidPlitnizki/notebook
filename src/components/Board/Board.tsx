@@ -9,9 +9,14 @@ interface IProps {
 }
 
 const Board: React.FC<IProps> = (props: IProps) => {
-    const [todoTasks, setTodoTasks] = useState(props.list);
+    const [todoTasks, setTodoTasks] = useState<ITask[]>([]);
 
-    console.log(props)
+    useEffect(() => {
+        // console.log("props: ", props)
+        setTodoTasks(props.list)
+    },[props.list])
+
+    
 
     const onDragOverHandler= (e: any) => {
         e.preventDefault();

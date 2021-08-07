@@ -9,34 +9,20 @@ import "./styles.css";
 
 const Listpage = () => {
     const tasksList = useSelector((state: RootState) => state.tasks.tasks);
-    const [progressTasks, setProgressTask] = useState([]);
-    const [tasks, setTasks] = useState(tasksList);
-
+    // const [progressTasks, setProgressTask] = useState([]);
+    const [tasks, setTasks] = useState<ITask[]>([]);
 
     useEffect(() => {
-        setTasks(tasksList);
+        console.log("before cnd: ", tasksList)
+        if(tasksList.length) {
+            console.log("in cnd: ", tasksList)
+            setTasks(tasksList);
+        }
     },[tasksList])
 
     
     return (
         <Board list={tasks} />
-        // <div>
-        //     <div>
-        //         <span>TODO</span>
-        //         {(tasks.length > 0) ? tasks.map((task: ITask)=>{
-        //             return(
-        //                 <Note key={task.id}
-        //                         id={task.id}
-        //                         title={task.title}
-        //                         desc={task.desc} />
-        //             )
-        //         }) : <h1 className="no_notes">NO NOTES</h1>}
-        //     </div>
-
-        //     <div>
-        //         <span>in progress</span>
-        //     </div>
-        // </div>
     )
 }
 
