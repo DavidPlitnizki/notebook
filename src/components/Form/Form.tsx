@@ -12,7 +12,8 @@ const Form: React.FC<TodoFormProps> = (props) => {
         const formObj = {
             id: Date.now(),
             title: input,
-            desc: txtArea
+            desc: txtArea,
+            status: "todo"
         }
         props.onAddTask(formObj);
         clearTextFields();

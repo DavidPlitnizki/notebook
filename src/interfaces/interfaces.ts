@@ -5,7 +5,8 @@ export interface TodoFormProps {
 export interface ITask {
     id: number,
     title: string,
-    desc: string
+    desc: string,
+    status: string
 }
 
 export interface ITaskState {

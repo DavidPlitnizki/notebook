@@ -4,9 +4,14 @@ import {useDispatch} from 'react-redux';
 import {deleteTask} from '../../store/TaskSlice';
 import {useStorage} from '../../hooks/useStorage';
 
+interface IProps {
+   data: ITask,
+   dragStart:(e: any) => void
+}
 
 
-const Note: React.FC<ITask> = ({id, title, desc}) => {
+
+const Note: React.FC<IProps> = ({data, dragStart}) => {
     const dispatch = useDispatch();
     const {removeTask} = useStorage();
 
@@ -16,13 +21,15 @@ const Note: React.FC<ITask> = ({id, title, desc}) => {
     }
 
     return (
-        <div className="card child-shadows-hover" style={{width: "15rem"}} draggable>
+        <div className="card child-shadows-hover" draggable onDragStart={dragStart}>
             <div className="card-body">
-                <h4 className="card-title">{title}</h4>
+                <h4 className="card-title">{data.title}</h4>
                 <hr />
-                <p className="card-text">{desc}</p>
+                <h5 className="card-title">{data.status}</h5>
+                <hr />
+                <p className="card-text">{data.desc}</p>
                 <div className="btn_wrapper">
-                    <button className="btn-danger" onClick={()=>deleteNote(id)} >Delete Note</button>
+                    <button className="btn-danger" onClick={()=>deleteNote(data.id)} >Delete Note</button>
                 </div>
             </div>
         </div>

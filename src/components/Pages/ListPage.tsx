@@ -9,7 +9,6 @@ import "./styles.css";
 
 const Listpage = () => {
     const tasksList = useSelector((state: RootState) => state.tasks.tasks);
-    // const [progressTasks, setProgressTask] = useState([]);
     const [tasks, setTasks] = useState<ITask[]>([]);
 
     useEffect(() => {
