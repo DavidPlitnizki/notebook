@@ -4,6 +4,7 @@ import styles from './Board.module.css';
 
 import Note from '../Note/Note';
 import { taskSlice } from '../../store/TaskSlice';
+import NoteList from '../List/NoteList';
 
 interface IProps {
     list: ITask[]
@@ -20,7 +21,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
         setTodoTasks(props.list)
     },[props.list])
 
-    
+
 
     const onDragOverHandler= (e: any) => { e.preventDefault();}
 
@@ -30,95 +31,65 @@ const Board: React.FC<IProps> = (props: IProps) => {
         console.log(e)
     }
 
-    const onDropHandler = (e: any, status: string) => {    
+    const onDropHandler = (e: any, dropTarget: string) => {    
         console.log("drop");
-        console.log(status);
+        console.log(dropTarget);
         console.log(dragItem.current);
 
-        if(status === dragItem.current.status) return;
+        if(dropTarget === dragItem.current.status) return;
 
-
-        
-        // const curr = todoTasks.filter((item) => item.id === dragItem.current);
-        // const ch = todoTasks.filter((item) => item.id !== dragItem.current);
-         if(status === "todo") {
+         if(dropTarget === "todo") {
             const task = dragItem.current;
-            if(task.status === "in_progress") {
-                // removeTask(progressTasks, task);
-                const oldTasks = progressTasks.filter((fromTask) => fromTask.id !== task.id);
-                setProgressTasks(oldTasks);
-            }
-            if(task.status === "done") {
-                const oldTasks = doneTasks.filter((fromTask) => fromTask.id !== task.id);
-                setDoneTasks(oldTasks);
-                // removeTask(doneTasks, task);
-            } 
-        //    addTask(todoTasks, task, "todo");
+            filtredDataByTask(task);
+            
                 const newTask = {
                     id: task.id,
                     desc: task.desc,
                     title: task.title,
-                    status
+                    status: dropTarget
                 }
             setTodoTasks([...todoTasks, newTask]);
-         }
-         if(status === "in_progress") {
+         }else if(dropTarget === "in_progress") {
              const task = dragItem.current;
-                if(task.status === "todo") {
-                    // removeTask(todoTasks, task);
-                    const oldTasks = todoTasks.filter((fromTask) => fromTask.id !== task.id);
-                    setTodoTasks(oldTasks);
-                }
-                if(task.status === "done") {
-                    const oldTasks = doneTasks.filter((fromTask) => fromTask.id !== task.id);
-                    setDoneTasks(oldTasks);
-                    // removeTask(doneTasks, task);
-                } 
+                filtredDataByTask(task);
+              
                 const newTask = {
                     id: task.id,
                     desc: task.desc,
                     title: task.title,
-                    status
+                    status: dropTarget
                 }
                 setProgressTasks([...progressTasks, newTask]);
-            //    addTask(progressTasks, task, "in_progress");
-         }
-        if(status === "done") {
+         }else if(dropTarget === "done") {
             const task = dragItem.current;
-            if(task.status === "todo") {
-                const oldTasks = todoTasks.filter((fromTask) => fromTask.id !== task.id);
-                setTodoTasks(oldTasks);
-                // removeTask(todoTasks, task);
-            }
-            if(task.status === "in_progress") {
-                const oldTasks = progressTasks.filter((fromTask) => fromTask.id !== task.id);
-                setProgressTasks(oldTasks);
-                // removeTask(progressTasks, task);
-            } 
+            filtredDataByTask(task);
+
             const newTask = {
                 id: task.id,
                 desc: task.desc,
                 title: task.title,
-                status
+                status: dropTarget
             }
             setDoneTasks([...doneTasks, newTask]);
-        //    addTask(doneTasks, task, "done");
         }
     }
 
-    const removeTask = (from: ITask[], task: ITask) => {
-        const oldTasks = from.filter((fromTask) => fromTask.id !== task.id);
-        setTodoTasks(oldTasks);
-    }
-
-    const addTask = (to: ITask[], task: ITask, status: string) => {
-        const newTask = {
-            id: task.id,
-            desc: task.desc,
-            title: task.title,
-            status
+    const filtredDataByTask = (task: ITask) => {
+        switch(task.status) {
+            case "todo":
+                const filtredTodoTasks = todoTasks.filter((fromTask) => fromTask.id !== task.id);
+                setTodoTasks(filtredTodoTasks);
+                break;
+            case "in_progress":
+                const filtredProgressTasks = progressTasks.filter((fromTask) => fromTask.id !== task.id);
+                setProgressTasks(filtredProgressTasks);
+                break;
+            case "done":
+                const filtredDoneTasks = doneTasks.filter((fromTask) => fromTask.id !== task.id);
+                setDoneTasks(filtredDoneTasks);
+                break;
+            default: break;
         }
-     setProgressTasks([...to, newTask]);
     }
 
     return (
@@ -129,20 +100,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
                 <div className={styles.target}
                     onDragOver={(e) => onDragOverHandler(e)}
                     onDrop={(e) => onDropHandler(e, "todo")} >
-                {(todoTasks.length > 0) ? todoTasks.map((task: ITask)=>{
-                    const data = {
-                        id: task.id,
-                        title: task.title,
-                        desc: task.desc,
-                        status: task.status
-                    }
-                    return(
-                        <Note key={task.id}
-                                data={data}
-                                dragStart={(e: any) => onDragStartHandler(e, task)}
-                                 />
-                    )
-                }) : <h1 className="no_notes">NO NOTES</h1>}
+                        <NoteList data={todoTasks} onDrag={onDragStartHandler} />
                 </div>
             </div>
 
@@ -151,20 +109,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
                 <div className={styles.target} 
                     onDragOver={(e) => onDragOverHandler(e)}
                     onDrop={(e) => onDropHandler(e, "in_progress")} >
-                        {(progressTasks.length > 0) ? progressTasks.map((task: ITask)=>{
-                            const data = {
-                                id: task.id,
-                                title: task.title,
-                                desc: task.desc,
-                                status: task.status
-                            }
-                            return(
-                                <Note key={task.id}
-                                        data={data}
-                                        dragStart={(e: any) => onDragStartHandler(e, task)}
-                                        />
-                    )
-                        }) : <h1 className="no_notes">NO NOTES</h1>}                  
+                        <NoteList data={progressTasks} onDrag={onDragStartHandler} />
                 </div>
             </div>
 
@@ -173,20 +118,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
                 <div className={styles.target}
                     onDragOver={(e) => onDragOverHandler(e)}
                     onDrop={(e) => onDropHandler(e, "done")}>
-                        {(doneTasks.length > 0) ? doneTasks.map((task: ITask)=>{
-                            const data = {
-                                id: task.id,
-                                title: task.title,
-                                desc: task.desc,
-                                status: task.status
-                            }
-                            return(
-                            <Note key={task.id}
-                                    data={data}
-                                    dragStart={(e: any) => onDragStartHandler(e, task)}
-                                    />
-                            )
-                        }) : <h1 className="no_notes">NO NOTES</h1>}  
+                        <NoteList data={doneTasks} onDrag={onDragStartHandler} />
                 </div>
             </div>
         </div>
