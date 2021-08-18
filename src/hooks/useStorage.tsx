@@ -25,6 +25,8 @@ export const useStorage = () => {
         localStorage.setItem(storageName, JSON.stringify(newTasks))
     }
 
+    const updateTask = () =>{}
+
     const get = () => {}
 
     const getAll = (): ITask[] => {

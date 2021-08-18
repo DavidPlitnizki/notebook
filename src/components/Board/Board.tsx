@@ -1,9 +1,10 @@
 import React,{useState, useRef, useEffect} from 'react';
 import { ITask } from '../../interfaces/interfaces';
 import styles from './Board.module.css';
+import {useDispatch} from 'react-redux';
 
 import Note from '../Note/Note';
-import { taskSlice } from '../../store/TaskSlice';
+import { updateStatusTask } from '../../store/TaskSlice';
 import NoteList from '../List/NoteList';
 
 interface IProps {
@@ -17,8 +18,13 @@ const Board: React.FC<IProps> = (props: IProps) => {
 
     const dragItem = useRef() as React.MutableRefObject<ITask>;
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        setTodoTasks(props.list)
+        console.log("Board: ", props.list)
+        setTodoTasks(props.list.filter((task) => task.status === "todo"));
+        setProgressTasks(props.list.filter((task) => task.status === "in_progress"));
+        setDoneTasks(props.list.filter((task) => task.status === "done"));
     },[props.list])
 
 
@@ -49,6 +55,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
                     status: dropTarget
                 }
             setTodoTasks([...todoTasks, newTask]);
+            dispatch(updateStatusTask(newTask));
          }else if(dropTarget === "in_progress") {
              const task = dragItem.current;
                 filtredDataByTask(task);
@@ -60,6 +67,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
                     status: dropTarget
                 }
                 setProgressTasks([...progressTasks, newTask]);
+                dispatch(updateStatusTask(newTask));
          }else if(dropTarget === "done") {
             const task = dragItem.current;
             filtredDataByTask(task);
@@ -71,6 +79,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
                 status: dropTarget
             }
             setDoneTasks([...doneTasks, newTask]);
+            dispatch(updateStatusTask(newTask));
         }
     }
 

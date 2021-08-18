@@ -26,11 +26,19 @@ export const taskSlice = createSlice({
     addStoredTasks: (state, action: PayloadAction<ITask[]>) => {
         const newState = [...state.tasks, ...action.payload];
         state.tasks = newState;
+    },
+    updateStatusTask: (state, action: PayloadAction<ITask>) => {
+      console.log("action: ",action);
+      const newState = state.tasks.filter((task) => task.id !== action.payload.id);
+      console.log("newState: ",newState);
+      newState.push(action.payload);
+      state.tasks = newState;
+      // debugger;   
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addTask, deleteTask, addStoredTasks } = taskSlice.actions
+export const { addTask, deleteTask, addStoredTasks, updateStatusTask } = taskSlice.actions
 
 export default taskSlice.reducer
