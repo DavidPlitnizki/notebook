@@ -28,12 +28,9 @@ export const taskSlice = createSlice({
         state.tasks = newState;
     },
     updateStatusTask: (state, action: PayloadAction<ITask>) => {
-      console.log("action: ",action);
       const newState = state.tasks.filter((task) => task.id !== action.payload.id);
-      console.log("newState: ",newState);
       newState.push(action.payload);
       state.tasks = newState;
-      // debugger;   
     }
   },
 })

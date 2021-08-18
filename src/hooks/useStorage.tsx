@@ -25,9 +25,24 @@ export const useStorage = () => {
         localStorage.setItem(storageName, JSON.stringify(newTasks))
     }
 
-    const updateTask = () =>{}
+    const updateTask = (task: ITask) =>{
+        const res = getAll();
+        if(res) {
+            const result = res.filter((item) => item.id !== task.id);
+            result.push(task);
+            localStorage.setItem(storageName, JSON.stringify(result));
+        }
+    }
 
-    const get = () => {}
+    const getTask = (task: ITask) => {
+        const res = localStorage.getItem(storageName);
+        if(res) {
+            const result = JSON.parse(res);
+            return result.filter((item: ITask) => item.id === task.id);
+        } else {
+            return null;
+        }
+    }
 
     const getAll = (): ITask[] => {
         let parsedRes: ITask[] = [];
@@ -39,6 +54,6 @@ export const useStorage = () => {
         return parsedRes;
     }
 
-    return {save, removeTask, get, getAll};
+    return {save, removeTask, getTask, getAll, updateTask};
 }
 
