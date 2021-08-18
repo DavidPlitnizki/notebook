@@ -12,7 +12,7 @@ const Listpage: React.FC = () => {
 
     useEffect(() => {
         console.log("before cnd: ", tasksList)
-        if(tasksList.length && tasksList.length !== taskLength) {
+        if(tasksList.length !== taskLength) {
             console.log("in cnd: ", tasksList)
             console.log("length: ", taskLength);
             setTaskLength(tasksList.length);
