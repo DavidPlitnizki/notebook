@@ -24,7 +24,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
     useEffect(() => {
         console.log("Board: ", props.list)
         setTodoTasks(props.list.filter((task) => task.status === "todo"));
-        setProgressTasks(props.list.filter((task) => task.status === "in_progress"));
+        setProgressTasks(props.list.filter((task) => task.status === "progress"));
         setDoneTasks(props.list.filter((task) => task.status === "done"));
     },[props.list])
 
@@ -58,7 +58,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
             setTodoTasks([...todoTasks, newTask]);
             dispatch(updateStatusTask(newTask));
             updateTask(newTask);
-         }else if(dropTarget === "in_progress") {
+         }else if(dropTarget === "in progress") {
              const task = dragItem.current;
                 filtredDataByTask(task);
               
@@ -93,7 +93,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
                 const filtredTodoTasks = todoTasks.filter((fromTask) => fromTask.id !== task.id);
                 setTodoTasks(filtredTodoTasks);
                 break;
-            case "in_progress":
+            case "in progress":
                 const filtredProgressTasks = progressTasks.filter((fromTask) => fromTask.id !== task.id);
                 setProgressTasks(filtredProgressTasks);
                 break;
@@ -121,7 +121,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
                 <span>IN PROGRESS</span>
                 <div className={styles.target} 
                     onDragOver={(e) => onDragOverHandler(e)}
-                    onDrop={(e) => onDropHandler(e, "in_progress")} >
+                    onDrop={(e) => onDropHandler(e, "in progress")} >
                         <NoteList data={progressTasks} onDrag={onDragStartHandler} />
                 </div>
             </div>

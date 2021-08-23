@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from './Note.module.css';
+
 import {ITask} from '../../interfaces/interfaces';
 import {useDispatch} from 'react-redux';
 import {deleteTask} from '../../store/TaskSlice';
@@ -25,9 +27,9 @@ const Note: React.FC<IProps> = ({data, dragStart}) => {
             <div className="card-body">
                 <h4 className="card-title">{data.title}</h4>
                 <hr />
-                <h5 className="card-title">{data.status}</h5>
+                <h5 className="card-title">status: {data.status}</h5>
                 <hr />
-                <p className="card-text">{data.desc}</p>
+                <pre className={`card-text ${styles.pre_init}`}>{data.desc}</pre>
                 <div className="btn_wrapper">
                     <button className="btn-danger" onClick={()=>deleteNote(data.id)} >Delete Note</button>
                 </div>

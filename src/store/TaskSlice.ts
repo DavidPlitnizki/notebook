@@ -15,7 +15,6 @@ export const taskSlice = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
     addTask: (state, action: PayloadAction<ITask>) => {
-        // state.tasks.push(action.payload)
         const newState = [...state.tasks, action.payload];
         state.tasks = newState;
     },
