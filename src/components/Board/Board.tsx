@@ -12,6 +12,7 @@ interface IProps {
 }
 
 const Board: React.FC<IProps> = (props: IProps) => {
+    
     const [todoTasks, setTodoTasks] = useState<ITask[]>([]);
     const [progressTasks, setProgressTasks] = useState<ITask[]>([]);
     const [doneTasks, setDoneTasks] = useState<ITask[]>([]);
@@ -22,9 +23,8 @@ const Board: React.FC<IProps> = (props: IProps) => {
     const { updateTask } = useStorage();
 
     useEffect(() => {
-        console.log("Board: ", props.list)
         setTodoTasks(props.list.filter((task) => task.status === "todo"));
-        setProgressTasks(props.list.filter((task) => task.status === "progress"));
+        setProgressTasks(props.list.filter((task) => task.status === "in_progress"));
         setDoneTasks(props.list.filter((task) => task.status === "done"));
     },[props.list])
 
@@ -33,15 +33,10 @@ const Board: React.FC<IProps> = (props: IProps) => {
     const onDragOverHandler= (e: any) => { e.preventDefault();}
 
     const onDragStartHandler = (e: any, task: ITask) => {
-        console.log("drag start: ", task);
         dragItem.current = task;
-        console.log(e)
     }
 
     const onDropHandler = (e: any, dropTarget: string) => {    
-        console.log("drop");
-        console.log(dropTarget);
-        console.log(dragItem.current);
 
         if(dropTarget === dragItem.current.status) return;
 
@@ -58,7 +53,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
             setTodoTasks([...todoTasks, newTask]);
             dispatch(updateStatusTask(newTask));
             updateTask(newTask);
-         }else if(dropTarget === "in progress") {
+         }else if(dropTarget === "in_progress") {
              const task = dragItem.current;
                 filtredDataByTask(task);
               
@@ -93,7 +88,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
                 const filtredTodoTasks = todoTasks.filter((fromTask) => fromTask.id !== task.id);
                 setTodoTasks(filtredTodoTasks);
                 break;
-            case "in progress":
+            case "in_progress":
                 const filtredProgressTasks = progressTasks.filter((fromTask) => fromTask.id !== task.id);
                 setProgressTasks(filtredProgressTasks);
                 break;
@@ -121,7 +116,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
                 <span>IN PROGRESS</span>
                 <div className={styles.target} 
                     onDragOver={(e) => onDragOverHandler(e)}
-                    onDrop={(e) => onDropHandler(e, "in progress")} >
+                    onDrop={(e) => onDropHandler(e, "in_progress")} >
                         <NoteList data={progressTasks} onDrag={onDragStartHandler} />
                 </div>
             </div>

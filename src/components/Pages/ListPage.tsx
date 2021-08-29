@@ -11,10 +11,7 @@ const Listpage: React.FC = () => {
     const [taskLength, setTaskLength] = useState<number>(0);
 
     useEffect(() => {
-        console.log("before cnd: ", tasksList)
         if(tasksList.length !== taskLength) {
-            console.log("in cnd: ", tasksList)
-            console.log("length: ", taskLength);
             setTaskLength(tasksList.length);
             setTasks(tasksList);
         }
