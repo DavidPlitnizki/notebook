@@ -14,7 +14,7 @@ import {store} from './store';
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router basename="/notebook">
+        <Router basename="/">
             <App />
         </Router>
     </Provider>
