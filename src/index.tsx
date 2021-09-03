@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 // import thunk from 'redux-thunk';
 // import rootReducer from './reducers/index';
 import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/App/App';
 // import { composeWithDevTools } from 'redux-devtools-extension';
 import {store} from './store';
@@ -14,9 +14,9 @@ import {store} from './store';
 
 ReactDOM.render(
     <Provider store={store}>
-        <HashRouter basename="/">
+        <Router>
             <App />
-        </HashRouter>
+        </Router>
     </Provider>
 , document.getElementById('root'));
 
