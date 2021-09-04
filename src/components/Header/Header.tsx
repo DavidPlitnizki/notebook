@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Badge from '../Badge/Badge';
 import { RootState } from '../../store';
 import Navigation from '../Navigation/Navigation';
+import ToggleTheme from '../Toggle/ToggleTheme';
 
 const Header: React.FC = () => {
     const tasksList = useSelector((state: RootState) => state.tasks.tasks);
@@ -13,6 +14,7 @@ const Header: React.FC = () => {
             <div className="nav-brand">
                 <h3><Link to={`${process.env.PUBLIC_URL}/`}>NOTEBOOK</Link></h3>
             </div>
+            <ToggleTheme />
             <div className="collapsible">
             <input id="collapsible1" type="checkbox" name="collapsible1" />
                 <button>
