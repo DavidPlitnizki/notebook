@@ -27,7 +27,7 @@ const Form: React.FC<TodoFormProps> = (props) => {
     return (
        <form onSubmit={handleSubmit}>
             <div className="form-group">
-                <label htmlFor="title">Input</label>
+                <label htmlFor="title">Create Task</label>
                 <input onChange={(e)=>setInput(e.target.value)} value={input}  type="text" style={{width: "15rem"}} name="title" placeholder="title" id="title..." />
                 <textarea onChange={(e)=>setTxtArea(e.target.value)} value={txtArea} style={{width: "15rem", height: "15rem"}} name="body" placeholder="Enter something..."></textarea>
                 <button type="submit" className="btn-success">Save</button>

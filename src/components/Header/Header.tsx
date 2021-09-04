@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import { Link } from "react-router-dom";
 import Badge from '../Badge/Badge';
 import { RootState } from '../../store';
+import Navigation from '../Navigation/Navigation';
 
 const Header: React.FC = () => {
     const tasksList = useSelector((state: RootState) => state.tasks.tasks);
@@ -23,10 +24,7 @@ const Header: React.FC = () => {
                 </button>
                 {tasksList.length > 0 && <Badge type="menu" count={tasksList.length} />}
                 <div className="collapsible-body">
-                    <ul className="inline">
-                        <li><Link to={`${process.env.PUBLIC_URL}/`}>Main</Link></li>
-                        <li><Link to={`${process.env.PUBLIC_URL}/list`}>All</Link></li>
-                    </ul>
+                    <Navigation />
                     {tasksList.length > 0 && <Badge type="link" count={tasksList.length} />}
                 </div>
             </div>
