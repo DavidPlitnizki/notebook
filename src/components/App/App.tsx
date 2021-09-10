@@ -15,9 +15,16 @@ const App: React.FC = () => {
     dispatch(addStoredTasks(storedTasks));
   },[]);
 
+  const themeCB = (theme: string) => {
+    console.log(theme)
+    const body = document.querySelector('body');
+    body?.removeAttribute("class")
+    body?.classList.add(theme)
+  }
+
   return (
     <>
-      <Header />
+      <Header getTheme={themeCB} />
       <RouterApp />
     </>
   );

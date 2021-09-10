@@ -29,7 +29,7 @@
     content: "";
     width: 1.2rem;
     height: 1.2rem;
-    background: transparent url('../../assets/moon2.png') no-repeat;
+    background: transparent url('../../assets/sun.png') no-repeat;
     background-size: 100%;
     left: -1.5rem;
     top: 50%;
@@ -42,7 +42,7 @@
     content: "";
     width: 1.2rem;
     height: 1.2rem;
-    background: transparent url('../../assets/sun.png') no-repeat;
+    background: transparent url('../../assets/moon2.png') no-repeat;
     background-size: 100%;
     left: 1.5rem;
     top: 50%;
