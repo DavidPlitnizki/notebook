@@ -1,22 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import styles from './ToggleTheme.module.css'
 
+import {useSelector} from 'react-redux';
+
+import { RootState } from '../../store';
+
+
 interface IProps {
-    getTheme: (theme: string) => void
+    getTheme: (theme: string) => void,
+    theme: string
 }
 
 
-const ToggleTheme: React.FC<IProps> = ({getTheme}) => {
-    const [theme, setTheme] = useState('bright');
-
-    const changeToggle = () => {
-        setTheme((prevTheme)=> ((prevTheme === 'bright') ? 'dark' : 'bright'));
-       
-    }
+const ToggleTheme: React.FC<IProps> = ({getTheme, theme}) => {
+    const themeStyle = useSelector((state: RootState) => state.theme.theme);
 
     useEffect(() => {
-        getTheme(theme);
-    }, [theme])
+    },[themeStyle])
+
+    const changeToggle = () => {
+        const themeName = (themeStyle === 'bright') ? 'dark' : 'bright';
+        getTheme(themeName);
+       
+       
+    }
 
     const themeState = (theme === 'bright') ? styles.day : styles.dark;
     return (

@@ -1,0 +1,11 @@
+.dark {
+    color: var(--global-text-dark-theme);
+}
+
+.dark input {
+    color: var(--global-text-dark-theme);
+}
+
+.dark textarea {
+    color: var(--global-text-dark-theme);
+}

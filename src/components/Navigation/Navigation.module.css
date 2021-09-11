@@ -1,0 +1,7 @@
+.dark {
+    background-color: var(--global-color-dark-theme);
+}
+
+.dark a {
+    color: var(--global-text-dark-theme);
+}

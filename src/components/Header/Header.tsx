@@ -7,24 +7,26 @@ import Badge from '../Badge/Badge';
 import { RootState } from '../../store';
 import Navigation from '../Navigation/Navigation';
 import ToggleTheme from '../Toggle/ToggleTheme';
+import {useDispatch} from 'react-redux';
+import {changeTheme} from '../../store/ThemeSlice';
 
-interface IProps {
-    getTheme: (theme: string) => void
-}
-
-const Header: React.FC<IProps> = ({getTheme}) => {
+const Header: React.FC = () => {
     const tasksList = useSelector((state: RootState) => state.tasks.tasks);
+    const themeStyle = useSelector((state: RootState) => state.theme.theme);
+    const dispatch = useDispatch();
 
-    const themeCB = useCallback((theme: string) => {
-        getTheme(theme)
-    },[getTheme])
+    const changeThemeCB = useCallback((theme: string) => {
+        dispatch(changeTheme({theme}))
+    },[dispatch])
+
+    const styleTheme = (themeStyle === 'bright') ? styles.bright : styles.dark;
 
     return(
-        <nav className={`border split-nav ${styles.wrapper}`}>
+        <nav className={`border split-nav ${styleTheme} ${styles.wrapper}`}>
             <div className="nav-brand">
                 <h3><Link to={`${process.env.PUBLIC_URL}/`}>NOTEBOOK</Link></h3>
             </div>
-            <ToggleTheme getTheme={themeCB} />
+            <ToggleTheme getTheme={changeThemeCB} theme={themeStyle} />
             <div className="collapsible">
             <input id="collapsible1" type="checkbox" name="collapsible1" />
                 <button>
@@ -36,7 +38,7 @@ const Header: React.FC<IProps> = ({getTheme}) => {
                 </button>
                 {tasksList.length > 0 && <Badge type="menu" count={tasksList.length} />}
                 <div className="collapsible-body">
-                    <Navigation />
+                    <Navigation theme={themeStyle} />
                     {tasksList.length > 0 && <Badge type="link" count={tasksList.length} />}
                 </div>
             </div>

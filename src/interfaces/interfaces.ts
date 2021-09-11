@@ -12,3 +12,11 @@ export interface ITask {
 export interface ITaskState {
     tasks: ITask[]
 }
+
+export interface IThemeState {
+    theme: string
+}
+
+export interface ITheme {
+    theme: string
+}
