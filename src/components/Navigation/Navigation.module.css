@@ -1,5 +1,5 @@
-.dark {
-    background-color: var(--global-color-dark-theme);
+nav {
+    background-color: transparent;
 }
 
 .dark a {
