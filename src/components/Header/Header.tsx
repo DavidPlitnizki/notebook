@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import styles from './Header.module.css';
+
 import {useSelector} from 'react-redux';
 import { Link } from "react-router-dom";
 import Badge from '../Badge/Badge';
-
-interface ITasksState  {
-    tasksState: any;
-}
+import { RootState } from '../../store';
+import Navigation from '../Navigation/Navigation';
+import ToggleTheme from '../Toggle/ToggleTheme';
+import {useDispatch} from 'react-redux';
+import {changeTheme} from '../../store/ThemeSlice';
 
 const Header: React.FC = () => {
-    const tasksList = useSelector((state: ITasksState) => state.tasksState.tasks);
+    const tasksList = useSelector((state: RootState) => state.tasks.tasks);
+    const themeStyle = useSelector((state: RootState) => state.theme.theme);
+    const dispatch = useDispatch();
+
+    const changeThemeCB = useCallback((theme: string) => {
+        dispatch(changeTheme({theme}))
+    },[dispatch])
+
+    const styleTheme = (themeStyle === 'bright') ? styles.bright : styles.dark;
 
     return(
-        <nav className="border split-nav">
+        <nav className={`border split-nav ${styleTheme} ${styles.wrapper}`}>
             <div className="nav-brand">
-                <h3><a href={`${process.env.PUBLIC_URL}/`}>NOTEBOOK</a></h3>
+                <h3><Link to={`${process.env.PUBLIC_URL}/`}>NOTEBOOK</Link></h3>
             </div>
+            <ToggleTheme getTheme={changeThemeCB} theme={themeStyle} />
             <div className="collapsible">
             <input id="collapsible1" type="checkbox" name="collapsible1" />
                 <button>
@@ -26,10 +38,7 @@ const Header: React.FC = () => {
                 </button>
                 {tasksList.length > 0 && <Badge type="menu" count={tasksList.length} />}
                 <div className="collapsible-body">
-                    <ul className="inline">
-                        <li><Link to={`${process.env.PUBLIC_URL}/`}>Main</Link></li>
-                        <li><Link to={`${process.env.PUBLIC_URL}/list`}>All</Link></li>
-                    </ul>
+                    <Navigation theme={themeStyle} />
                     {tasksList.length > 0 && <Badge type="link" count={tasksList.length} />}
                 </div>
             </div>

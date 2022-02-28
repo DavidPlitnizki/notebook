@@ -1,0 +1,7 @@
+nav {
+    background-color: transparent;
+}
+
+.dark a {
+    color: var(--global-text-dark-theme);
+}

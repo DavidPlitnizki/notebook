@@ -1,0 +1,11 @@
+.bright.wrapper {
+    background-color: var(--global-color-bright-theme);
+}
+
+.dark.wrapper {
+    background-color: var(--global-color-dark-theme);
+}
+
+.dark.wrapper h3 a {
+    color: var(--global-text-dark-theme);
+}

@@ -1,17 +1,17 @@
 import React from 'react';
 import Form from '../Form/Form'
 import {useDispatch} from 'react-redux';
-import {addTask} from '../../actions/actions'
+import {addTask} from '../../store/TaskSlice';
 import {ITask} from '../../interfaces/interfaces';
 import {useStorage} from '../../hooks/useStorage';
-
-interface ITasksState  {
-    tasksState: any;
-}
+import {useSelector} from 'react-redux';
+import { RootState } from '../../store';
 
 const Main: React.FC = () => {
     const dispatch = useDispatch();
     const {save} = useStorage();
+
+    const themeStyle = useSelector((state: RootState) => state.theme.theme);
 
     const addNewtask = (task: ITask) => {
         save(task);
@@ -22,7 +22,7 @@ const Main: React.FC = () => {
         <div className="container">
             <div className="row">
                 <div className="col-12 center">
-                    <Form onAddTask={addNewtask} />
+                    <Form onAddTask={addNewtask} theme={themeStyle} />
                 </div>
             </div>
         </div>

@@ -1,3 +1,10 @@
+:root {
+  --global-color-bright-theme: white;
+  --global-color-dark-theme: black;
+  --global-text-bright-theme: black;
+  --global-text-dark-theme: white;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,6 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-display: optional;
+  /* background-color: var(--global-color-bright); */
 }
 
 code {

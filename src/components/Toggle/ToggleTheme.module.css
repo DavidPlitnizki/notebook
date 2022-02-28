@@ -1,0 +1,64 @@
+.toggle_wrapper {
+    position: absolute;
+    left: 9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 1.5rem;
+    background-color: grey;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1.2rem;
+    width: 1.2rem;
+    border-radius: 999px;
+    background-color: honeydew;
+    transition: box-shadow .15s linear, transform .15s linear;
+}
+
+.circle::before {
+    display: block;
+    content: "";
+    width: 1.2rem;
+    height: 1.2rem;
+    background: transparent url('../../assets/sun.png') no-repeat;
+    background-size: 100%;
+    left: -1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+.circle:after {
+    display: block;
+    content: "";
+    width: 1.2rem;
+    height: 1.2rem;
+    background: transparent url('../../assets/moon2.png') no-repeat;
+    background-size: 100%;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+.circle:hover {
+    cursor: pointer;
+    box-shadow: inset 0px 0px 5px 2px #8d8d8d;
+}
+
+.day {
+    transform: translate(.2rem, -50%);
+}
+
+.dark {
+    transform: translate(1.6rem, -50%);
+}

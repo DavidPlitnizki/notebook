@@ -1,7 +1,12 @@
 import React,{ useState } from 'react';
 import {TodoFormProps} from '../../interfaces/interfaces';
+import styles from './Form.module.css';
 
-const Form: React.FC<TodoFormProps> = (props) => {
+interface IProps extends TodoFormProps {
+    theme: string
+}
+
+const Form: React.FC<IProps> = (props) => {
     const [input, setInput] = useState<string>('');
     const [txtArea, setTxtArea] = useState<string>('');
 
@@ -12,7 +17,8 @@ const Form: React.FC<TodoFormProps> = (props) => {
         const formObj = {
             id: Date.now(),
             title: input,
-            desc: txtArea
+            desc: txtArea,
+            status: "todo"
         }
         props.onAddTask(formObj);
         clearTextFields();
@@ -23,10 +29,12 @@ const Form: React.FC<TodoFormProps> = (props) => {
         setTxtArea('');
     }
 
+    const styleTheme = (props.theme === 'bright') ? "" : styles.dark;
+
     return (
-       <form onSubmit={handleSubmit}>
+       <form onSubmit={handleSubmit} className={`${styleTheme}`}>
             <div className="form-group">
-                <label htmlFor="title">Input</label>
+                <label htmlFor="title" className={styles.title}>Create Task</label>
                 <input onChange={(e)=>setInput(e.target.value)} value={input}  type="text" style={{width: "15rem"}} name="title" placeholder="title" id="title..." />
                 <textarea onChange={(e)=>setTxtArea(e.target.value)} value={txtArea} style={{width: "15rem", height: "15rem"}} name="body" placeholder="Enter something..."></textarea>
                 <button type="submit" className="btn-success">Save</button>

@@ -1,37 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
-import Note from '../Note/Note';
 import { ITask } from '../../interfaces/interfaces';
-import {useStorage} from '../../hooks/useStorage';
+import { RootState } from '../../store';
+import Board from '../../components/Board/Board';
 import "./styles.css";
 
-interface ITasksState  {
-    tasksState: any;
-}
-
-const Listpage = () => {
-    const tasksList = useSelector((state: ITasksState) => state.tasksState.tasks);
-    const [tasks, setTasks] = useState(tasksList);
-    const { getAll } = useStorage();
+const Listpage: React.FC = () => {
+    const tasksList = useSelector((state: RootState) => state.tasks.tasks);
+    const [tasks, setTasks] = useState<ITask[]>([]);
+    const [taskLength, setTaskLength] = useState<number>(0);
 
     useEffect(() => {
-        const storedTasks = getAll();
-        setTasks(storedTasks);
-    },[])
-
-    useEffect(() => {
-        setTasks(tasksList);
-    },[tasksList])
+        if(tasksList.length !== taskLength) {
+            setTaskLength(tasksList.length);
+            setTasks(tasksList);
+        }
+    },[tasksList, taskLength]);
 
     
     return (
-        <div>
-            {(tasks.length > 0) ? tasks.map((task: ITask)=>{
-                return(
-                    <Note key={task.id} id={task.id} title={task.title} desc={task.desc} />
-                )
-            }) : <h1 className="no_notes">NO NOTES</h1>}
-        </div>
+        <Board list={tasks} />
     )
 }
 
