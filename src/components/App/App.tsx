@@ -12,7 +12,6 @@ const App: React.FC = () => {
   const { getAll } = useStorage();
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     const storedTasks = getAll();
     dispatch(addStoredTasks(storedTasks));
