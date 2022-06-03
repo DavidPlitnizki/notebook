@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import { ITask } from '../../interfaces/interfaces';
 
 import Note from '../Note/Note';
@@ -8,8 +8,7 @@ interface IProps {
     onDrag:(e: any, task: ITask) => void
 }
 
-const NoteList:React.FC<IProps> = ({data, onDrag}) => {
-    return (
+const NoteList:React.FC<IProps> = memo(({data, onDrag}) => (
         <>
          {(data.length > 0) ? data.map((task: ITask)=>{
                     const data = {
@@ -26,7 +25,6 @@ const NoteList:React.FC<IProps> = ({data, onDrag}) => {
                     )
                 }) : <h1 className="no_notes">NO NOTES</h1>}
             </>
-    )
-}
+));
 
 export default NoteList;

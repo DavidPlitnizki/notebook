@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import styles from './Note.module.css';
 
 import {ITask} from '../../interfaces/interfaces';
@@ -13,7 +13,7 @@ interface IProps {
 
 
 
-const Note: React.FC<IProps> = ({data, dragStart}) => {
+const Note: React.FC<IProps> = memo(({data, dragStart}) => {
     const dispatch = useDispatch();
     const {removeTask} = useStorage();
 
@@ -37,6 +37,6 @@ const Note: React.FC<IProps> = ({data, dragStart}) => {
         </div>
         
     )
-}
+});
 
 export default Note;

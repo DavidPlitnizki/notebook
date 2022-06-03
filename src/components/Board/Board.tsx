@@ -1,4 +1,4 @@
-import React,{useState, useRef, useEffect} from 'react';
+import React,{useState, useRef, useEffect, memo, useCallback} from 'react';
 import { ITask } from '../../interfaces/interfaces';
 import styles from './Board.module.css';
 import {useDispatch} from 'react-redux';
@@ -11,7 +11,7 @@ interface IProps {
     list: ITask[]
 }
 
-const Board: React.FC<IProps> = (props: IProps) => {
+const Board: React.FC<IProps> = memo((props: IProps) => {
     
     const [todoTasks, setTodoTasks] = useState<ITask[]>([]);
     const [progressTasks, setProgressTasks] = useState<ITask[]>([]);
@@ -30,13 +30,31 @@ const Board: React.FC<IProps> = (props: IProps) => {
 
 
 
-    const onDragOverHandler= (e: any) => { e.preventDefault();}
+    const onDragOverHandler= useCallback((e: any) => { e.preventDefault();}, []);
 
-    const onDragStartHandler = (e: any, task: ITask) => {
+    const onDragStartHandler = useCallback((e: any, task: ITask) => {
         dragItem.current = task;
-    }
+    }, [dragItem]);
 
-    const onDropHandler = (e: any, dropTarget: string) => {    
+    const filtredDataByTask = useCallback((task: ITask) => {
+        switch(task.status) {
+            case "todo":
+                const filtredTodoTasks = todoTasks.filter((fromTask) => fromTask.id !== task.id);
+                setTodoTasks(filtredTodoTasks);
+                break;
+            case "in_progress":
+                const filtredProgressTasks = progressTasks.filter((fromTask) => fromTask.id !== task.id);
+                setProgressTasks(filtredProgressTasks);
+                break;
+            case "done":
+                const filtredDoneTasks = doneTasks.filter((fromTask) => fromTask.id !== task.id);
+                setDoneTasks(filtredDoneTasks);
+                break;
+            default: break;
+        }
+    }, [doneTasks, progressTasks, todoTasks]);
+
+    const onDropHandler = useCallback((e: any, dropTarget: string) => {    
 
         if(dropTarget === dragItem.current.status) return;
 
@@ -80,25 +98,7 @@ const Board: React.FC<IProps> = (props: IProps) => {
             dispatch(updateStatusTask(newTask));
             updateTask(newTask);
         }
-    }
-
-    const filtredDataByTask = (task: ITask) => {
-        switch(task.status) {
-            case "todo":
-                const filtredTodoTasks = todoTasks.filter((fromTask) => fromTask.id !== task.id);
-                setTodoTasks(filtredTodoTasks);
-                break;
-            case "in_progress":
-                const filtredProgressTasks = progressTasks.filter((fromTask) => fromTask.id !== task.id);
-                setProgressTasks(filtredProgressTasks);
-                break;
-            case "done":
-                const filtredDoneTasks = doneTasks.filter((fromTask) => fromTask.id !== task.id);
-                setDoneTasks(filtredDoneTasks);
-                break;
-            default: break;
-        }
-    }
+    }, [dispatch, doneTasks, dragItem, filtredDataByTask, progressTasks, todoTasks, updateTask]);
 
     return (
         <div className={styles.wrapper}>
@@ -131,6 +131,6 @@ const Board: React.FC<IProps> = (props: IProps) => {
             </div>
         </div>
     )
-}
+});
 
 export default Board;

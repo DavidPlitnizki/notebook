@@ -1,22 +1,20 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import Form from '../Form/Form'
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 import {addTask} from '../../store/TaskSlice';
 import {ITask} from '../../interfaces/interfaces';
 import {useStorage} from '../../hooks/useStorage';
-import {useSelector} from 'react-redux';
 import { RootState } from '../../store';
 
 const Main: React.FC = () => {
+    const themeStyle = useSelector((state: RootState) => state.theme.theme, shallowEqual);
     const dispatch = useDispatch();
     const {save} = useStorage();
 
-    const themeStyle = useSelector((state: RootState) => state.theme.theme);
-
-    const addNewtask = (task: ITask) => {
+    const addNewtask = useCallback((task: ITask) => {
         save(task);
         dispatch(addTask(task))
-    }
+    }, [dispatch, save]);
     
     return (
         <div className="container">
