@@ -1,4 +1,4 @@
-import { ITheme, IThemeState } from "../interfaces/interfaces";
+import { ITheme, IThemeState } from "interfaces/interfaces";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: IThemeState = {

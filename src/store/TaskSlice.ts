@@ -1,4 +1,4 @@
-import { ITask, ITaskState } from "../interfaces/interfaces";
+import { ITask, ITaskState } from "interfaces/interfaces";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: ITaskState = {

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import Header from "../Header/Header";
-import RouterApp from "../../routerApp";
-import { useStorage } from "../../hooks/useStorage";
-import { addStoredTasks } from "../../store/TaskSlice";
-import { RootState } from "../../store";
+import Header from "components/Header/Header";
+import RouterApp from "routerApp";
+import { useStorage } from "hooks/useStorage";
+import { addStoredTasks } from "store/TaskSlice";
+import { RootState } from "store";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import styles from "./App.module.css";
 

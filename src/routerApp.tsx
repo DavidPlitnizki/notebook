@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import ListPage from "./components/Pages/ListPage";
-import MainPage from "./components/Pages/MainPage";
-import NoMatch from "./components/Pages/NoMatch";
+import ListPage from "components/Pages/ListPage";
+import MainPage from "components/Pages/MainPage";
+import NoMatch from "components/Pages/NoMatch";
 
 const RouterApp: React.FC = () => {
   return (

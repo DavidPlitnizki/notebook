@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, shallowEqual } from "react-redux";
-import { ITask } from "../../interfaces/interfaces";
-import { RootState } from "../../store";
-import Board from "../../components/Board/Board";
+import { ITask } from "interfaces/interfaces";
+import { RootState } from "store";
+import Board from "components/Board/Board";
 import "./styles.css";
 
 const Listpage: React.FC = () => {

@@ -1,4 +1,4 @@
-import { ITask } from "../interfaces/interfaces";
+import { ITask } from "interfaces/interfaces";
 
 const storageName = "NOTES";
 

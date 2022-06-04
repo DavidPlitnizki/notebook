@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import styles from "./Note.module.css";
 
-import { ITask } from "../../interfaces/interfaces";
+import { ITask } from "interfaces/interfaces";
 import { useDispatch } from "react-redux";
-import { deleteTask } from "../../store/TaskSlice";
-import { useStorage } from "../../hooks/useStorage";
+import { deleteTask } from "store/TaskSlice";
+import { useStorage } from "hooks/useStorage";
 
 interface IProps {
   data: ITask;

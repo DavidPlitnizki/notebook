@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect, memo, useCallback } from "react";
-import { ITask } from "../../interfaces/interfaces";
+import { ITask } from "interfaces/interfaces";
 import styles from "./Board.module.css";
 import { useDispatch } from "react-redux";
 
-import { updateStatusTask } from "../../store/TaskSlice";
-import NoteList from "../List/NoteList";
-import { useStorage } from "../../hooks/useStorage";
+import { updateStatusTask } from "store/TaskSlice";
+import NoteList from "components/List/NoteList";
+import { useStorage } from "hooks/useStorage";
 
 interface IProps {
   list: ITask[];

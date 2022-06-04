@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { ITask } from "../../interfaces/interfaces";
+import { ITask } from "interfaces/interfaces";
 
-import Note from "../Note/Note";
+import Note from "components/Note/Note";
 
 interface IProps {
   data: ITask[];
