@@ -1,34 +1,33 @@
 .container_badge {
-    width: 1em;
-    height: 1em;
-    background-color: cornflowerblue;
-    border-radius: 999px;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
+  width: 1em;
+  height: 1em;
+  background-color: cornflowerblue;
+  border-radius: 999px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
 }
 
 .container_badge.menu {
-    right: calc(0% + 1em);
-    top: 0;
+  right: calc(0% + 1em);
+  top: 0;
 }
 
 .container_badge.link {
-    left: 50%;
-    top: 6em;
+  left: 50%;
+  top: 6em;
 }
 
 .container_badge span {
-    font-size: .6em;
-    font-weight: bold;
+  font-size: 0.6em;
+  font-weight: bold;
 }
 
-
 @media only screen and (min-width: 760px) {
-    .container_badge.link {
-     display: none;
-    }
-  } 
+  .container_badge.link {
+    display: none;
+  }
+}
