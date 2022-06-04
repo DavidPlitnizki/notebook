@@ -39,7 +39,7 @@ const Header: React.FC = () => {
       <ToggleTheme changeTheme={changeThemeCB} theme={themeStyle} />
       <div className="collapsible">
         <input id="collapsible1" type="checkbox" name="collapsible1" />
-        <button>
+        <button aria-label="Menu Icon">
           <label htmlFor="collapsible1">
             <div className="bar1"></div>
             <div className="bar2"></div>
