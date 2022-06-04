@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./Badge.css";
 
 const Badge: React.FC<{ count: number; type: string }> = ({ count, type }) => {

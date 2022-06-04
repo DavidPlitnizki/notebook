@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import taskSliceReducer from "./TaskSlice";
 import themeSliceReducer from "./ThemeSlice";
 

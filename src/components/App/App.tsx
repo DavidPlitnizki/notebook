@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
-import Header from "components/Header/Header";
-import RouterApp from "routerApp";
 import { useStorage } from "hooks/useStorage";
-import { addStoredTasks } from "store/TaskSlice";
+import React, { useEffect } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import RouterApp from "routerApp";
 import { RootState } from "store";
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import { addStoredTasks } from "store/TaskSlice";
+
+import Header from "components/Header/Header";
+
 import styles from "./App.module.css";
 
 const App: React.FC = () => {

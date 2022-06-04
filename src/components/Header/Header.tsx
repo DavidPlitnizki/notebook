@@ -1,13 +1,14 @@
 import React, { useCallback } from "react";
-import styles from "./Header.module.css";
-
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Badge from "components/Badge/Badge";
 import { RootState } from "store";
+import { changeTheme } from "store/ThemeSlice";
+
+import Badge from "components/Badge/Badge";
 import Navigation from "components/Navigation/Navigation";
 import ToggleTheme from "components/Toggle/ToggleTheme";
-import { changeTheme } from "store/ThemeSlice";
+
+import styles from "./Header.module.css";
 
 const Header: React.FC = () => {
   const tasksList = useSelector(

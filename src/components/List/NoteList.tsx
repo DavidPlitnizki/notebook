@@ -1,5 +1,5 @@
-import React, { memo } from "react";
 import { ITask } from "interfaces/interfaces";
+import React, { memo } from "react";
 
 import Note from "components/Note/Note";
 

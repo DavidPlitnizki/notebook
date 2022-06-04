@@ -1,5 +1,5 @@
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ITheme, IThemeState } from "interfaces/interfaces";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: IThemeState = {
   theme: "bright",

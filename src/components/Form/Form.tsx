@@ -1,5 +1,6 @@
-import React, { useState, memo } from "react";
 import { TodoFormProps } from "interfaces/interfaces";
+import React, { memo, useState } from "react";
+
 import styles from "./Form.module.css";
 
 interface IProps extends TodoFormProps {

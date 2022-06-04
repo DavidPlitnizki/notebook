@@ -1,10 +1,11 @@
-import React, { useCallback } from "react";
-import Form from "../Form/Form";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { addTask } from "../../store/TaskSlice";
-import { ITask } from "interfaces/interfaces";
 import { useStorage } from "hooks/useStorage";
+import { ITask } from "interfaces/interfaces";
+import React, { useCallback } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { RootState } from "store";
+
+import { addTask } from "../../store/TaskSlice";
+import Form from "../Form/Form";
 
 const Main: React.FC = () => {
   const themeStyle = useSelector(
